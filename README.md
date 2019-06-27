@@ -12,11 +12,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
@@ -27,42 +22,78 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Specs
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## DoorDash Frontend Interview Project
+* TLDR: *Build a chat app with real APIs*
+* Time: *3hr - 6hrs*
+* Allowed tools & frameworks: *anything*
+* Show us what you got!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Howdy! 👋  
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This is the frontend interview project for DoorDash! We're going to ask you to build something with whatever tools you want, whatever language you want, or whatever.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you want to keep it vanilla, that's fine—this should take you 2/3 hours with jQuery, plain ol' HTML and CSS. If you want to use other tools, (like Angular, React, Vue, Ember) that's fine too—*just make sure you have enough documentation for us to be able to build and run the app*. We just want you to build something that's maintainable, testable, and that you're proud of.
 
-## Learn More
+The goal here is not to demonstrate your pure coding ability—we're here to give you a problem that's not totally spec'd out for you, and we want to see far you can go. How good can you make it without much guidance? What are the sort of improvements and choices you'll make as you build this thing, and where do your priorities lie?
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Remember, building stuff is supposed to be fun, so be creative! Happy coding!
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Getting started
+There's a few things you need to get started on to get this to work.
 
-### Code Splitting
+### 1. Installing minimum deps
+Make sure you have `node` installed, with a version greater than `7.0.0`. We highly recommend [`nvm`](https://github.com/creationix/nvm), or just installing the latest version of `node` with `brew install node` on macOS.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Once you have a good `node` installed, run `npm install` in this repo to get your dependencies.
 
-### Analyzing the Bundle Size
+### 2. Serving your app
+By default, you can run `npm start` to run your app, serving the files from `/public`. You can, however, change this to whatever you want! Just make sure you document the changes somewhere so we can run this.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### 3. Running the api server
+We have provided a simple api server for you. You can run `npm run api-server` to start it. Read the [spec](./spec/api-endpoints.md) for more details on the api.
 
-### Making a Progressive Web App
+### 4. Read the spec
+There's a pretty fleshed out spec in the `./spec` directory. Checkout the [design specs here](./spec/designs/detailed-design-specs.md) to understand what you're building!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## What you can use to build
+You can use literally _anything_ that can be served on the web. You should use what you're most comfortable with, no matter what (even if you heard that we use React). **We want you to use the tools you know, and we want to see you at your best and most productive.** 
 
-### Advanced Configuration
+Secondly, don't worry much about setting up build tools—use something simple and fast to spin up:
+* If you're using Ember, it's fast to spin up something with [`ember-cli`](https://ember-cli.com/)
+* If you're using Angular 1.x, you can use [this yeoman generator](https://github.com/yeoman/generator-angular) to spin up a scaffold
+* If you're using Angular 2+, you can use [Angular CLI](https://cli.angular.io/) to create a new app scaffolding
+* If you're using React, it's easy to use [`create-react-app`](https://github.com/facebookincubator/create-react-app) to start the project
+* If you're using Vue, [`vue-cli`](https://github.com/vuejs/vue-cli) will be a fast way to get started.
+* For anything else, use your favorite generators or templates!
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## How we'll test this
+We're going to review your code to see how you work and how you make tradeoffs—no automated tests for this one. We'll schedule a call with you after you submit this to walk through the code to understand your thought process. If you come on-site, we'll take your code here, and we'll build on it to test other things—how you write tests, how you build out new features and refactor old code, etc.
 
-### Deployment
+## We'll be evaluating for:
+* Solid UX without strict guidance
+* Chat Features
+* Code quality
+* Readability
+* Testability
+* Maintainability
+* Communication 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Submission Instructions
+1. Write up instructions on how to run your project and ensure there's ample documentation on your intent
+2. Upload your repo as a **private** repository to GitHub or GitLab
+3. Send an email back to recruiting with a zip file containing your solution and all the starter files provided by us. Make sure we can run the application using just the files in the zip
+4. We'll review and get back to you soon!
 
-### `npm run build` fails to minify
+## Extra notes
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+A couple of things to say:
+
+1. Feel free to change the language you're writing this in. We want to see what good code looks like for you - feel free to add a `gulpfile`, setup `webpack`, or just use the plain JS, CSS, and HTML you're given. It's all up to you!
+
+2. Feel free to use any libraries or frameworks you want, with the idea that they're increasing your productivity, not writing the app for you.
+
+3. **Please don't** modify the server.js file. We're looking to see your front-end skills!
+
+
