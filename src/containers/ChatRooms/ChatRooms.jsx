@@ -1,38 +1,68 @@
 import React from 'react';
-import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import { connect } from 'react-redux';
+import { Layout, Menu, Avatar, Typography, Spin } from 'antd';
 
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+import './styles.scss';
+import { getRooms } from '../../actions/roomsActions';
+import { getRoom } from '../../actions/roomActions';
+import Room from './Room';
 
-export function ChatRooms() {
-    return (
-        <Layout>
-            <Sider width={200} style={{ background: '#fff' }}>
+const { Sider } = Layout;
+const { Title } = Typography;
+
+class ChatRooms extends React.PureComponent {
+    componentDidMount() {
+        this.props.getRooms();
+    }
+
+    /** Handles room selection by loading the room */
+    handleRoomSelection = (room) => {
+        this.props.getRoom(room.key);
+    }
+
+    /** Renders the rooms list */
+    renderRooms = () => {
+        if (this.props.rooms) {
+            return (
                 <Menu
                     mode="inline"
-                    defaultSelectedKeys={['1']}
-                    defaultOpenKeys={['sub1']}
-                    style={{ height: '100%', borderRight: 0 }}
+                    defaultSelectedKeys={[]}
+                    defaultOpenKeys={[]}
+                    style={{ borderRight: 0 }}
                 >
-                    <SubMenu
-                        key="sub1"
-                        title={
-                            <span>
-                                <Icon type="user" />
-                                subnav 1
-              </span>
-                        }
-                    >
-                        <Menu.Item key="1">option1</Menu.Item>
-                        <Menu.Item key="2">option2</Menu.Item>
-                        <Menu.Item key="3">option3</Menu.Item>
-                        <Menu.Item key="4">option4</Menu.Item>
-                    </SubMenu>
+                    {this.props.rooms.map(room =>
+                        <Menu.Item key={room.id} onClick={this.handleRoomSelection}>{room.name}</Menu.Item>
+                    )}
                 </Menu>
-            </Sider>
-            <Content>
-                hi!
-            </Content>
-        </Layout>
-    )
+            );
+        }
+        return <Spin/>
+    }
+
+    render() {
+        return (
+            <Layout style={{ height: '100%' }}>
+                <Sider width={200} style={{ background: '#fff' }}>
+                    <div className="username">
+                        <Avatar icon="user" style={{ marginRight: '12px' }} size="small"/>
+                        <Title level={4}>{this.props.username}</Title>
+                    </div>
+                    {this.renderRooms()}
+                </Sider>
+                <Room/>
+            </Layout>
+        )
+    }
 }
+
+const mapStateToProps = state => ({
+    username: state.username.payload,
+    rooms: state.rooms.payload
+});
+
+const mapDispatchToProps = {
+    getRooms,
+    getRoom
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatRooms);
