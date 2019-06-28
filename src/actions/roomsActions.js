@@ -11,8 +11,12 @@ export const roomsActionTypes = {
 /** Get rooms */
 export function getRooms() {
     return async dispatch => {
-        const data = await HTTPService('/rooms', 'GET');
-        dispatch(getRoomsSuccess(data));
+        try {
+            const data = await HTTPService('/rooms', 'GET');
+            dispatch(getRoomsSuccess(data));
+        } catch(error) {
+            dispatch(getRoomsError());
+        }
     }
 }
 

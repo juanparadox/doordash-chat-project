@@ -14,6 +14,21 @@ class Room extends React.PureComponent {
         message: null
     }
 
+    componentDidUpdate(prevProps) {
+        this.clearExistingMessage(prevProps);
+        // Scroll to bottom on load complete
+        if (prevProps.messages !== this.props.messages) {
+            this.scrollConversationToBottom();
+        }
+    }
+
+    /** Clears the existing message text */
+    clearExistingMessage = (prevProps) => {
+        // Clear message state if post was successful
+        if (prevProps.isPostMessageLoading && !this.props.isPostMessageLoading && !this.props.messageHasError) {
+            this.setState({ message: null });
+        }
+    }
     /** Handles message change */
     handleMessageChange = ({ target: { value } }) => {
         this.setState({ message: value });
@@ -21,7 +36,6 @@ class Room extends React.PureComponent {
 
     /** Handles the submission of a new message */
     handleMessageSubmission = () => {
-        this.setState({ message: null });
         this.props.postMessage(
             this.props.roomDetail.id,
             {
@@ -31,9 +45,15 @@ class Room extends React.PureComponent {
         );
     }
 
+    /** Scrolls the conversations to the bottom */
+    scrollConversationToBottom = () => {
+        const conversationElement = document.getElementById('messages');
+        // Scroll to bottom
+        conversationElement.scrollTop = conversationElement.scrollHeight;
+    }
+
     render() {
         const { roomDetail, messages, isRoomDetailLoading, isPostMessageLoading } = this.props;
-        console.log(this.props);
         if (!roomDetail && !messages) {
             return (
                 <Content className="room">
@@ -74,7 +94,8 @@ const mapStateToProps = state => ({
     roomDetail: state.roomDetail.payload,
     messages: state.messages.payload,
     isRoomDetailLoading: state.roomDetail.isLoading,
-    isPostMessageLoading: state.message.isLoading
+    isPostMessageLoading: state.message.isLoading,
+    messageHasError: state.message.messageHasError
 });
 
 const mapDispatchToProps = {

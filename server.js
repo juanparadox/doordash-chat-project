@@ -102,7 +102,7 @@ router.route('/rooms/:roomId/messages')
       console.log('Response:',room)
       res.json(room)
     } else if (!req.body.name || !req.body.message) {
-      console.log(req.body);
+      console.log(req);
       console.log('Response:',{error: 'request missing name or message'})
       res.json({error: 'request missing name or message'})
     } else {

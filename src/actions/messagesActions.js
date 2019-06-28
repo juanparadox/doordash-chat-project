@@ -10,7 +10,6 @@ export const MessagesActionTypes = {
 
 /** Get messages */
 export function getMessages(roomId) {
-    console.log('getting messages');
     return async dispatch => {
         const data = await HTTPService(`/rooms/${roomId}/messages`, 'GET');
         dispatch(getMessagesSuccess(data));

@@ -2,7 +2,8 @@ import { roomsActionTypes } from '../actions/roomsActions';
 
 const initialState = {
     payload: null,
-    isLoading: false
+    isLoading: false,
+    hasError: false
 }
 
 export function roomsReducer(state = initialState, action) {
@@ -23,7 +24,8 @@ export function roomsReducer(state = initialState, action) {
             return {
                 ...state,
                 payload: null,
-                isLoading: false
+                isLoading: false,
+                hasError: true
             }
         default:
             return state

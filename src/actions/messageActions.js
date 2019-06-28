@@ -1,5 +1,6 @@
 import { HTTPService } from '../services/http';
 import { getMessages } from './messagesActions';
+import { message } from 'antd';
 
 /** Action Types */
 export const MessageActionTypes = {
@@ -11,16 +12,21 @@ export const MessageActionTypes = {
 
 /** Post message */
 export function postMessage(roomId, payload) {
-    console.log(roomId, payload);
     return async dispatch => {
-        await HTTPService(`/rooms/${roomId}/messages`, 'POST', JSON.stringify(payload));
-        dispatch(postMessageSuccess());
-        dispatch(getMessages(roomId));
+        dispatch(postMessageLoading())
+        try {
+            await HTTPService(`/rooms/${roomId}/messages`, 'POST', payload);
+            dispatch(postMessageSuccess());
+            dispatch(getMessages(roomId));
+        } catch(error) {
+            message.error('There was an error submitting your message. Please try again.');
+            dispatch(postMessageError());
+        }
     }
 }
 
 /** Post message success */
-export function postMessageSuccess(payload) {
+export function postMessageSuccess() {
     return {
         type: MessageActionTypes.POST_MESSAGE_SUCCESS
     }

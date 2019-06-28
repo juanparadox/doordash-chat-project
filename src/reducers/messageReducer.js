@@ -2,7 +2,8 @@ import { MessageActionTypes } from '../actions/messageActions';
 
 const initialState = {
     payload: null,
-    isLoading: false
+    isLoading: false,
+    hasError: false
 }
 
 export function messageReducer(state = initialState, action) {
@@ -10,13 +11,20 @@ export function messageReducer(state = initialState, action) {
         case MessageActionTypes.POST_MESSAGE_LOADING:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                hasError: false
             }
         case MessageActionTypes.POST_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                hasError: false
+            }
         case MessageActionTypes.POST_MESSAGE_ERROR:
             return {
                 ...state,
-                isLoading: false
+                isLoading: false,
+                hasError: true
             }
         default:
             return state

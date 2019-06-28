@@ -23,5 +23,18 @@
     .messages {
         padding-right: 12px;
         padding-left: 12px;
+        height: calc(100vh - 279px);
+        overflow-y: scroll;
+    }
+}
+
+.chat-rooms {
+    .__skeleton {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+    .__alert {
+        margin-right: 12px;
+        margin-left: 12px;
     }
 }

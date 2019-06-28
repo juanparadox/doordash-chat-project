@@ -4,14 +4,18 @@ export async function HTTPService(url, method, body) {
         `http://localhost:8080/api/${url}`,
         {
             method,
-            body
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         }
     )
-        .then(response => {
-            console.log(response.body);
-            return response.json();
-        })
-        .catch(error => {
-            console.log(JSON.stringify(error));
+        .then(async response => {
+            const result = await response.json();
+            // Handle errors
+            if (!response.ok || result.error) {
+                throw new Error();
+            }
+            return result;
         });
 }

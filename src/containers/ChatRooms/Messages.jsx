@@ -4,6 +4,7 @@ import { List, Comment, Avatar } from 'antd';
 export const Messages = ({ messages }) => (
     <List
         className="messages"
+        id="messages"
         dataSource={messages}
         itemLayout="horizontal"
         renderItem={({ name, message }) =>

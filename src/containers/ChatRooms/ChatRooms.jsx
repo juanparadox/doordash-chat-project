@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Layout, Menu, Avatar, Typography, Spin } from 'antd';
+import { Layout, Menu, Avatar, Typography, Skeleton, Alert } from 'antd';
 
 import './styles.scss';
 import { getRooms } from '../../actions/roomsActions';
@@ -22,6 +22,12 @@ class ChatRooms extends React.PureComponent {
 
     /** Renders the rooms list */
     renderRooms = () => {
+        if(this.props.isRoomsLoading) {
+            return <Skeleton className="__skeleton" active/>
+        }
+        if(this.props.roomsHasError) {
+            return <Alert message="There was an error loading the rooms list." type="error" className="__alert"/>;
+        }
         if (this.props.rooms) {
             return (
                 <Menu
@@ -36,12 +42,12 @@ class ChatRooms extends React.PureComponent {
                 </Menu>
             );
         }
-        return <Spin/>
+        return <Skeleton className="__skeleton" active />
     }
 
     render() {
         return (
-            <Layout style={{ height: '100%' }}>
+            <Layout style={{ height: '100%' }} className="chat-rooms">
                 <Sider width={200} style={{ background: '#fff' }}>
                     <div className="username">
                         <Avatar icon="user" style={{ marginRight: '12px' }} size="small"/>
@@ -57,7 +63,9 @@ class ChatRooms extends React.PureComponent {
 
 const mapStateToProps = state => ({
     username: state.username.payload,
-    rooms: state.rooms.payload
+    rooms: state.rooms.payload,
+    isRoomsLoading: state.rooms.isLoading,
+    roomsHasError: state.rooms.hasError
 });
 
 const mapDispatchToProps = {

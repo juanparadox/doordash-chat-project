@@ -4,7 +4,7 @@ import { Form, Button, Input } from 'antd';
 const { TextArea } = Input;
 
 export const NewMessageTextArea = ({ onChange, onSubmit, submitting, value }) => (
-    <div>
+    <Form>
         <Form.Item>
             <TextArea rows={4} onChange={onChange} value={value} />
         </Form.Item>
@@ -13,5 +13,5 @@ export const NewMessageTextArea = ({ onChange, onSubmit, submitting, value }) =>
                 Add Message
         </Button>
         </Form.Item>
-    </div>
+    </Form>
 );
