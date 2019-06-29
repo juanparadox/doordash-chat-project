@@ -1,4 +1,5 @@
-import { HTTPService } from "../services/http";
+import { HTTPService } from '../services/http';
+import { message } from 'antd';
 
 /** Action Types */
 export const MessagesActionTypes = {
@@ -11,8 +12,12 @@ export const MessagesActionTypes = {
 /** Get messages */
 export function getMessages(roomId) {
     return async dispatch => {
-        const data = await HTTPService(`/rooms/${roomId}/messages`, 'GET');
-        dispatch(getMessagesSuccess(data));
+        try {
+            const data = await HTTPService(`/rooms/${roomId}/messages`, 'GET');
+            dispatch(getMessagesSuccess(data));
+        } catch (error) {
+            message.error('There was an error fetching messages. Please try again.');
+        }
     }
 }
 

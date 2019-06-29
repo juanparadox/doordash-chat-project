@@ -7,8 +7,6 @@ import { createUsername } from '../../actions/usernameActions';
 
 import './styles.scss';
 
-const { Header, Content, Sider } = Layout;
-
 class Login extends React.PureComponent {
     state = {
         username: null
@@ -34,12 +32,15 @@ class Login extends React.PureComponent {
                             placeholder="Type your username..."
                             className="__input"
                             onChange={this.handleUsernameChange}
+                            required
+                            value={this.state.username}
                         />
                         <Button
                             type="primary"
                             onClick={this.handleCreateUsername}
                             block
                             value={this.state.username}
+                            disabled={!this.state.username}
                         >
                             Join the DoorDash Chat!
                         </Button>

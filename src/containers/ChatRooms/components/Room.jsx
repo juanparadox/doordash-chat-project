@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Layout, Comment, Avatar, Spin, PageHeader, Empty } from 'antd';
 
-import './styles.scss';
+import '../styles.scss';
 import { NewMessageTextArea } from './NewMessageTextArea';
 import { Messages } from './Messages';
-import { postMessage } from '../../actions/messageActions';
+import { postMessage } from '../../../actions/messageActions';
 
 const { Content } = Layout;
 

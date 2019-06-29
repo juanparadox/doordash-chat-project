@@ -5,10 +5,11 @@ import { Layout, Menu, Avatar, Typography, Skeleton, Alert } from 'antd';
 import './styles.scss';
 import { getRooms } from '../../actions/roomsActions';
 import { getRoom } from '../../actions/roomActions';
-import Room from './Room';
+import Room from './components/Room';
+import SessionTimer from './components/SessionTimer';
 
 const { Sider } = Layout;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 class ChatRooms extends React.PureComponent {
     componentDidMount() {
@@ -22,11 +23,11 @@ class ChatRooms extends React.PureComponent {
 
     /** Renders the rooms list */
     renderRooms = () => {
-        if(this.props.isRoomsLoading) {
-            return <Skeleton className="__skeleton" active/>
+        if (this.props.isRoomsLoading) {
+            return <Skeleton className="__skeleton" active />
         }
-        if(this.props.roomsHasError) {
-            return <Alert message="There was an error loading the rooms list." type="error" className="__alert"/>;
+        if (this.props.roomsHasError) {
+            return <Alert message="There was an error loading the rooms list." type="error" className="__alert" />;
         }
         if (this.props.rooms) {
             return (
@@ -50,12 +51,15 @@ class ChatRooms extends React.PureComponent {
             <Layout style={{ height: '100%' }} className="chat-rooms">
                 <Sider width={200} style={{ background: '#fff' }}>
                     <div className="username">
-                        <Avatar icon="user" style={{ marginRight: '12px' }} size="small"/>
-                        <Title level={4}>{this.props.username}</Title>
+                        <Avatar icon="user" style={{ marginRight: '12px' }} size="small" />
+                        <div>
+                            <Title level={4}>{this.props.username}</Title>
+                            <Text type="secondary">Online for <SessionTimer /></Text>
+                        </div>
                     </div>
                     {this.renderRooms()}
                 </Sider>
-                <Room/>
+                <Room />
             </Layout>
         )
     }

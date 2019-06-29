@@ -1,3 +1,14 @@
+# doordash-chat-project
+Hello there! Please make sure to run the server using `npm run api-server` at the root and run the web application using `yarn start` at the root as well. Before running the web app, ensure you have all dependencies by running `yarn` or `npm install`.
+
+The app does not maintain state on refresh or on close so the user's data will be lost which will cause message posting to error out.
+
+Certain error flows have been added, but not every scenario is accounted for.
+
+The application was built with Javascript using the React library and Redux as a way for handling application state. It utilizes the ANT design library for the visual design.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
